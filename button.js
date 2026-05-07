@@ -43,3 +43,27 @@ botonesAñadir.forEach(function(boton) {
         actualizarPantalla();
     }
 });
+
+function actualizarPantalla() {
+    contenedorItems.innerHTML = "";
+    let sumaTotal = 0;
+
+    listaCarrito.forEach(function(juego) {
+        sumaTotal = sumaTotal + juego.costo;
+
+        contenedorItems.innerHTML += `
+            <div class="cart-item" style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 15px; background: #0f172a; padding: 10px; border-radius: 8px;">
+                <img src="${juego.imagen}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px;">
+                <div style="flex: 1;">
+                    <p style="margin: 0; font-size: 0.9rem; font-weight: bold;">${juego.titulo}</p>
+                    <p style="margin: 0; font-size: 0.7rem; color: #94a3b8;">★ ${juego.calificacion}</p>
+                    <p style="margin: 5px 0; font-size: 0.75rem; color: #cbd5e1; line-height: 1.2;">${juego.descripcion}</p>
+                    <p style="margin: 0; color: #3b82f6; font-weight: bold;">$${juego.costo}</p>
+                </div>
+            </div>
+        `;
+    });
+
+    textoTotal.innerText = sumaTotal.toFixed(2);
+    contadorIcono.innerText = listaCarrito.length;
+}
